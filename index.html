@@ -1,529 +1,539 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>者右的日语入门资料</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- 极细宋体：Noto Serif SC 100 / 200 / 300 -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    /* ===== RESET ===== */
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语学习人格分支测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ===== 背景 & 丝绸涌动层 ===== */
-    body {
-      min-height: 100vh;
-      background: #f7f0e6;
-      font-family: "Noto Serif SC", "Songti SC", serif;
-      font-weight: 200;
-      color: #3e3530;
-      padding: 0 16px 40px;
-      position: relative;
-      overflow-x: hidden;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f1e8d9 0%, #e6d6b8 100%);
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #3e3a35;
+        }
 
-    /* ——— 丝绸涌动背景 ——— */
-    .silk {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+        }
 
-    .silk-layer {
-      position: absolute;
-      inset: -60% -60%;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.35;
-      will-change: transform;
-    }
+        /* 卡片 */
+        .card {
+            background: rgba(255, 250, 240, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(210, 180, 140, 0.3);
+        }
 
-    .silk-layer--1 {
-      background: radial-gradient(ellipse at 30% 40%, #e8d5b7 0%, transparent 70%);
-      animation: silkDrift 22s ease-in-out infinite alternate;
-    }
-    .silk-layer--2 {
-      background: radial-gradient(ellipse at 70% 60%, #dcc4a0 0%, transparent 70%);
-      animation: silkDrift 28s ease-in-out infinite alternate-reverse;
-    }
-    .silk-layer--3 {
-      background: radial-gradient(ellipse at 50% 80%, #f0e3ce 0%, transparent 65%);
-      animation: silkDrift 18s ease-in-out infinite alternate;
-    }
-    .silk-layer--4 {
-      background: radial-gradient(ellipse at 20% 20%, #c9b18b 0%, transparent 60%);
-      animation: silkDrift 32s ease-in-out infinite alternate-reverse;
-      opacity: 0.2;
-    }
-    .silk-layer--5 {
-      background: radial-gradient(ellipse at 80% 20%, #eedcc2 0%, transparent 60%);
-      animation: silkDrift 24s ease-in-out infinite alternate;
-      opacity: 0.25;
-    }
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            letter-spacing: 0.02em;
+            color: #4a3f35;
+        }
 
-    @keyframes silkDrift {
-      0%   { transform: translate(-4%, -2%) scale(1) rotate(0deg); }
-      25%  { transform: translate(2%, -5%) scale(1.04) rotate(2deg); }
-      50%  { transform: translate(5%, 3%) scale(0.96) rotate(-1deg); }
-      75%  { transform: translate(-2%, 5%) scale(1.02) rotate(3deg); }
-      100% { transform: translate(3%, -3%) scale(1) rotate(-2deg); }
-    }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    /* ===== 容器 ===== */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 580px;
-      margin: 0 auto;
-    }
+        .option-btn {
+            background: #faf5ed;
+            border: 1px solid #d9c8ae;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 400;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: #4b3f33;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(4px);
+            word-break: break-word;
+            line-height: 1.4;
+        }
 
-    /* ===== 头部 ===== */
-    .header {
-      padding: 56px 0 8px;
-      text-align: center;
-    }
+        .option-btn:hover {
+            background: #e7d7bf;
+            border-color: #b2946b;
+            box-shadow: 0 8px 18px rgba(140, 110, 70, 0.15);
+            transform: translateY(-1px);
+        }
 
-    .header h1 {
-      font-size: 2.1rem;
-      font-weight: 200;
-      letter-spacing: 0.12em;
-      color: #4a3f35;
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
+        .option-btn:active {
+            background: #dac5a7;
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
 
-    .header .subtitle {
-      font-size: 0.92rem;
-      font-weight: 300;
-      color: #8a7d6c;
-      line-height: 1.8;
-      letter-spacing: 0.06em;
-      max-width: 460px;
-      margin: 0 auto;
-    }
+        /* 结果页样式 */
+        .result-card {
+            text-align: center;
+        }
 
-    .header .divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #c9b89e, transparent);
-      margin: 24px auto 0;
-    }
+        .result-type {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #5e4632;
+            letter-spacing: 0.04em;
+        }
 
-    /* ===== 卡片网格 ===== */
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 32px 0;
-    }
+        .result-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #4a3f35;
+            white-space: pre-line;
+            text-align: left;
+            background: rgba(235, 220, 195, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+        }
 
-    /* ===== 卡片 ===== */
-    .card {
-      background: rgba(255, 250, 242, 0.72);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 24px 24px 20px;
-      border: 1px solid rgba(210, 190, 165, 0.25);
-      box-shadow:
-        0 4px 20px rgba(140, 115, 85, 0.06),
-        0 1px 3px rgba(140, 115, 85, 0.04);
-      transition: box-shadow 0.35s ease, transform 0.35s ease;
-    }
+        .back-btn {
+            background: transparent;
+            border: 1px solid #cdb89e;
+            color: #7a6a58;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-top: 24px;
+        }
 
-    .card:hover {
-      box-shadow:
-        0 12px 36px rgba(140, 115, 85, 0.10),
-        0 2px 6px rgba(140, 115, 85, 0.06);
-      transform: translateY(-2px);
-    }
+        .back-btn:hover {
+            background: #cdb89e;
+            color: #fdfaf5;
+            border-color: #cdb89e;
+            box-shadow: 0 4px 12px rgba(140, 110, 70, 0.15);
+        }
 
-    /* — 卡片头部：编号 + 名称 — */
-    .card-head {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
+        .restart-btn {
+            background: transparent;
+            border: 1px solid #b2946b;
+            color: #5e4632;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
 
-    .card-id {
-      font-size: 0.82rem;
-      font-weight: 400;
-      color: #b2946b;
-      letter-spacing: 0.04em;
-    }
+        .restart-btn:hover {
+            background: #b2946b;
+            color: #fdfaf5;
+            border-color: #b2946b;
+            box-shadow: 0 8px 18px rgba(140, 110, 70, 0.2);
+        }
 
-    .card-name {
-      font-size: 1.18rem;
-      font-weight: 400;
-      color: #4a3f35;
-      letter-spacing: 0.06em;
-    }
+        /* 首页标题 */
+        .start-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-align: center;
+            color: #5e4632;
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
 
-    .card-sub {
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: #a8947c;
-      letter-spacing: 0.04em;
-      margin-bottom: 6px;
-    }
+        .start-sub {
+            text-align: center;
+            color: #8a7a67;
+            font-size: 1rem;
+            margin-bottom: 36px;
+            letter-spacing: 0.08em;
+        }
 
-    .card-desc {
-      font-size: 0.88rem;
-      font-weight: 200;
-      color: #8a7d6c;
-      line-height: 1.6;
-      margin-bottom: 16px;
-      letter-spacing: 0.03em;
-    }
+        .start-btn {
+            display: block;
+            margin: 0 auto;
+            background: #b2946b;
+            border: none;
+            color: #fdfaf5;
+            padding: 16px 48px;
+            border-radius: 40px;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            box-shadow: 0 4px 14px rgba(140, 110, 70, 0.25);
+        }
 
-    /* — 按钮 — */
-    .card-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 24px;
-      border-radius: 40px;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: transparent;
-      border: 1px solid #d4c0a6;
-      color: #6b5d4d;
-    }
+        .start-btn:hover {
+            background: #9f835d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(140, 110, 70, 0.35);
+        }
 
-    .card-btn:hover {
-      background: #d4c0a6;
-      color: #fdfaf5;
-      box-shadow: 0 4px 14px rgba(180, 155, 125, 0.25);
-    }
+        .start-btn:active {
+            transform: translateY(0);
+        }
 
-    .card-btn:active {
-      transform: scale(0.97);
-    }
+        /* 隐藏类 */
+        .hidden {
+            display: none;
+        }
 
-    .card-btn .icon {
-      font-size: 1rem;
-      line-height: 1;
-    }
-
-    /* 已复制 / 已下载 反馈态 */
-    .card-btn.feedback {
-      background: #b2946b;
-      color: #fdfaf5;
-      border-color: #b2946b;
-      pointer-events: none;
-    }
-
-    /* ===== 页脚 ===== */
-    .footer {
-      text-align: center;
-      padding: 8px 0 32px;
-      font-size: 0.78rem;
-      font-weight: 200;
-      color: #b8aa98;
-      letter-spacing: 0.06em;
-      line-height: 2;
-    }
-
-    .footer .row {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .footer .sep {
-      color: #d4c8b8;
-      margin: 0 6px;
-    }
-
-    .footer a {
-      color: #b8aa98;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer a:hover {
-      color: #8a7d6c;
-    }
-
-    /* ===== Toast 提示 ===== */
-    .toast {
-      position: fixed;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: rgba(60, 50, 40, 0.88);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: #f5efe6;
-      padding: 12px 28px;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      opacity: 0;
-      transition: all 0.4s ease;
-      z-index: 999;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ===== 响应式 ===== */
-    @media (max-width: 400px) {
-      .header h1 {
-        font-size: 1.7rem;
-      }
-      .card {
-        padding: 20px 18px 16px;
-      }
-      .card-name {
-        font-size: 1.05rem;
-      }
-    }
-
-    @media (min-width: 640px) {
-      body {
-        padding: 0 24px 60px;
-      }
-      .header {
-        padding: 72px 0 12px;
-      }
-      .header h1 {
-        font-size: 2.4rem;
-      }
-      .cards {
-        gap: 20px;
-        padding: 40px 0;
-      }
-      .card {
-        padding: 28px 28px 24px;
-      }
-    }
-  </style>
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px 20px;
+            }
+            .question-text {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <!-- 首页 -->
+        <div id="startCard" class="card">
+            <div class="start-title">日语学习人格测试</div>
+            <div class="start-sub">一分钟测出你适不适合学日语</div>
+            <button id="startButton" class="start-btn">开始测试</button>
+        </div>
 
-  <!-- ===== 丝绸涌动背景 ===== -->
-  <div class="silk" aria-hidden="true">
-    <div class="silk-layer silk-layer--1"></div>
-    <div class="silk-layer silk-layer--2"></div>
-    <div class="silk-layer silk-layer--3"></div>
-    <div class="silk-layer silk-layer--4"></div>
-    <div class="silk-layer silk-layer--5"></div>
-  </div>
+        <!-- 问题卡片（初始隐藏） -->
+        <div id="questionCard" class="card hidden">
+            <div id="questionText" class="question-text"></div>
+            <div id="optionsContainer" class="options"></div>
+            <div style="text-align: center;">
+                <button id="backButton" class="back-btn hidden">← 返回上一题</button>
+            </div>
+        </div>
 
-  <!-- ===== Toast ===== -->
-  <div id="toast" class="toast"></div>
+        <!-- 结果卡片（初始隐藏） -->
+        <div id="resultCard" class="card result-card hidden">
+            <div id="resultType" class="result-type"></div>
+            <div id="resultDesc" class="result-desc"></div>
+            <button id="restartButton" class="restart-btn">↺ 重新测试</button>
+        </div>
+    </div>
 
-  <!-- ===== 主内容 ===== -->
-  <div class="container">
-    <!-- 头部 -->
-    <header class="header">
-      <h1>者右的日语入门资料</h1>
-      <p class="subtitle">
-        感谢购入，这套资料帮助过 50+ 零基础学习者建立整体认知，
-        少走弯路，认知效率提高 30%
-      </p>
-      <div class="divider"></div>
-    </header>
+    <script>
+        (function() {
+            // ---------- 数据定义（直接修改这里即可扩展）----------
+            const nodes = {
+                1: {
+                    text: "现在是什么水平？",
+                    options: [
+                        { label: "A 刚接触，零基础 ", next: 2 },
+                        { label: "B 自学过一些些 ", next: 2 },
+                        { label: "C 系统学习过", next: 3 }
+                    ]
+                },
+                2: {
+                    text: "你学日语的目的是什么？",
+                    options: [
+                        { label: "A 兴趣爱好 ", next: 4 },
+                        { label: "B 工作或留学", next: 4 },
+                        { label: "C 考试或考级", next: 4 }
+                    ]
+                },
+                3: {
+                    text: "是什么让你感到学习阻力",
+                    options: [
+                        { label: "A 懒 ", next: 2 },
+                        { label: "B 难", next: 5 },
+                        { label: "C 兴趣不足", next: 5 }
+                    ]
+                },
+                4: {
+                    text: "你期望自己能学到什么水平？",
+                    options: [
+                        { label: "A 母语者接近", next: 5 },
+                        { label: "B 考级N1 N2左右", next: 5 },
+                        { label: "C N3以下", next: 6 }
+                    ]
+                },
+                5: {
+                    text: "平时你如何学习日语的？",
+                    options: [
+                        { label: "A 自学", next: 7 },
+                        { label: "B 报班或报课", next: 8 },
+                        { label: "C 都有", next: 8 }
+                    ]
+                },
+                6: {
+                    text: "你期望学习的方式是什么？",
+                    options: [
+                        { label: "A 跟着教科书学", next: 10 },
+                        { label: "B 跟老师学", next: 9 },
+                        { label: "C 自学", next: 10 }
+                    ]
+                },
+                7: {
+                    text: "如何自学的",
+                    options: [
+                        { label: "A 看看动漫 刷刷剧 听听歌", next: 6 },
+                        { label: "B 跟着教科书学", next: 10 },
+                        { label: "C app上学", next: 9 }
+                    ]
+                },
+                8: {
+                    text: "已经跟班或者买课了吗？",
+                    options: [
+                        { label: "A 已经", next: 9 },
+                        { label: "B 没有", next: 9 }
+                    ]
+                },
+                9: {
+                    text: "你觉得学习中借助老师/外力的教学时长和自学时长占比大概为多少？",
+                    options: [
+                        { label: "A 大概7：3 ", next: 11 },
+                        { label: "B 大概1：1", next: 10 },
+                        { label: "C 大概3：7 ", next: 13 }
+                    ]
+                },
+                10: {
+                    text: "每天大概学习时长",
+                    options: [
+                        { label: "A 一小时以上", next: 12 },
+                        { label: "B 半小时左右", next: 11 },
+                        { label: "C 十分钟左右 ", next: "result_D" }
+                    ]
+                },
+                11: {
+                    text: "你具备以下特质吗？",
+                    options: [
+                        { label: "A 记忆力好，逻辑性也不错", next: "result_B" },
+                        { label: "B 记忆力一般，但勤奋", next: "result_C" },
+                        { label: "C 记忆较差，比较懒惰", next: "result_D" }
+                    ]
+                },
+                12: {
+                    text: "你具备以下特质吗？",
+                    options: [
+                        { label: "A 记忆力好，逻辑性也不错", next: "result_AB" },
+                        { label: "B 记忆力一般，但勤奋", next: "result_B" },
+                        { label: "C 记忆较差，比较懒惰", next: "result_C" }
+                    ]
+                },
+                13: {
+                    text: "你具备以下特质吗？",
+                    options: [
+                        { label: "A 记忆力好，逻辑性也不错 ", next: "result_A" },
+                        { label: "B 记忆力一般，但勤奋", next: "result_B" },
+                        { label: "C 记忆较差，比较懒惰", next: "result_C" }
+                    ]
+                }
+            };
 
-    <!-- 卡片列表（由 JS 动态渲染） -->
-    <div id="cardsContainer" class="cards"></div>
+            const results = {
+                result_A: `
+        显示结果为以下人格
 
-    <!-- 页脚 -->
-    <footer class="footer" id="footer"></footer>
-  </div>
+        A类人格为：当前学习路径与学习能力匹配高，上限高。
+        每天抽出半小时时间大概一年可以到达N2左右水平
+        `,
+                result_B: `
+        显示结果为一下人格
 
-  <!-- ===== 数据 ===== -->
-  <script src="data.js"></script>
+        B类人格为：通过正确学习路径可以达到高水平
+        `,
+                result_AB: `
+        显示结果为一下人格
 
-  <script>
-    (function () {
-      'use strict'
+        A到B类人格：当前学习路径与学习能力较为匹配，但仍需要通过外力的正确路径，能达到高水平
+        `,
+                result_C: `
+        显示结果为一下人格
 
-      /* ---------- DOM 引用 ---------- */
-      const container = document.getElementById('cardsContainer')
-      const footerEl = document.getElementById('footer')
-      const toastEl = document.getElementById('toast')
-      let toastTimer = null
+        C类人格：需要外部结构（老师/方法/工具/前辈）介入，否则效率低下，难以达到高水平。（N1以上）
+        `,
+                result_D: `
+        显示结果为一下人格
 
-      /* ---------- Toast ---------- */
-      function showToast(msg) {
-        if (toastTimer) clearTimeout(toastTimer)
-        toastEl.textContent = msg
-        toastEl.classList.add('show')
-        toastTimer = setTimeout(function () {
-          toastEl.classList.remove('show')
-        }, 2000)
-      }
+        D类人格：小懒虫吗都是？
+        当前学习方法与学习能力同日语学习不太匹配，需要重新考量。
+        `
+            };
 
-      /* ---------- 文件下载 ---------- */
-      function downloadFile(filePath) {
-        // 创建 <a> 标签触发 download
-        var a = document.createElement('a')
-        a.href = filePath
-        a.download = filePath.split('/').pop() // 保留原文件名
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-      }
+            // ---------- DOM 元素 ----------
+            const startCard = document.getElementById('startCard');
+            const startBtn = document.getElementById('startButton');
+            const questionCard = document.getElementById('questionCard');
+            const resultCard = document.getElementById('resultCard');
+            const questionText = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const resultType = document.getElementById('resultType');
+            const resultDesc = document.getElementById('resultDesc');
+            const restartBtn = document.getElementById('restartButton');
+            const backBtn = document.getElementById('backButton');
 
-      /* ---------- 复制网址 ---------- */
-      function copyUrl(url, label) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(url).then(function () {
-            showToast('✅ 已复制：' + label)
-          }).catch(function () {
-            fallbackCopy(url, label)
-          })
-        } else {
-          fallbackCopy(url, label)
-        }
-      }
+            // 当前节点ID
+            let currentNode = 1;
 
-      function fallbackCopy(text, label) {
-        var ta = document.createElement('textarea')
-        ta.value = text
-        ta.style.position = 'fixed'
-        ta.style.opacity = '0'
-        document.body.appendChild(ta)
-        ta.select()
-        try {
-          document.execCommand('copy')
-          showToast('✅ 已复制：' + label)
-        } catch (e) {
-          showToast('⚠️ 复制失败，请手动复制')
-        }
-        document.body.removeChild(ta)
-      }
+            // 历史记录栈（记录每次跳转的来源节点ID）
+            let historyStack = [];
 
-      /* ---------- 按钮点击处理 ---------- */
-      function handleBtnClick(mod, btnEl) {
-        // 防止重复点击
-        if (btnEl.classList.contains('feedback')) return
+            // 辅助函数：从结果文本中提取人格标题
+            function extractTitle(resultKey) {
+                const raw = results[resultKey];
+                if (!raw) return '未知类型';
 
-        if (mod.type === 'copy-url') {
-          copyUrl(mod.url, mod.copyLabel || '网址')
-          btnEl.classList.add('feedback')
-          btnEl.innerHTML = '<span class="icon">✓</span> 已保存'
-        } else if (mod.type === 'download') {
-          downloadFile(mod.file)
-          showToast('📥 开始下载 ' + mod.file.split('/').pop())
-          btnEl.classList.add('feedback')
-          btnEl.innerHTML = '<span class="icon">✓</span> 已下载'
-        }
+                // 去掉可能存在的 "显示结果为一下人格" 这类说明
+                let cleaned = raw.replace(/^显示结果为一下人格\s*/i, '').trim();
 
-        // 3 秒后恢复按钮
-        setTimeout(function () {
-          btnEl.classList.remove('feedback')
-          renderButton(btnEl, mod)
-        }, 3000)
-      }
-
-      /* ---------- 渲染按钮 ---------- */
-      function renderButton(btnEl, mod) {
-        if (mod.type === 'copy-url') {
-          btnEl.innerHTML = '<span class="icon">🔗</span> 保存网址'
-        } else {
-          btnEl.innerHTML = '<span class="icon">↓</span> 立即下载'
-        }
-      }
-
-      /* ---------- 渲染页面 ---------- */
-      function render() {
-        var data = window.siteData
-        if (!data) {
-          container.innerHTML =
-            '<p style="text-align:center;color:#b8aa98;padding:40px 0;">正在加载配置…</p>'
-          return
-        }
-
-        // —— 卡片 ——
-        var html = ''
-        data.modules.forEach(function (m) {
-          html += '<div class="card">'
-          html += '  <div class="card-head">'
-          html += '    <span class="card-id">' + m.id + '</span>'
-          html += '    <span class="card-name">' + m.name + '</span>'
-          html += '  </div>'
-          if (m.subtitle) {
-            html += '  <div class="card-sub">' + m.subtitle + '</div>'
-          }
-          html += '  <div class="card-desc">' + (m.desc || '') + '</div>'
-          html += '  <button class="card-btn" data-module-id="' + m.id + '">'
-          if (m.type === 'copy-url') {
-            html += '    <span class="icon">🔗</span> 保存网址'
-          } else {
-            html += '    <span class="icon">↓</span> 立即下载'
-          }
-          html += '  </button>'
-          html += '</div>'
-        })
-        container.innerHTML = html
-
-        // —— 绑定按钮事件 ——
-        var btns = container.querySelectorAll('.card-btn')
-        data.modules.forEach(function (m, idx) {
-          btns[idx].addEventListener('click', function (e) {
-            handleBtnClick(m, e.currentTarget)
-          })
-        })
-
-        // —— 页脚 ——
-        var f = data.footer
-        if (f) {
-          var fHtml = ''
-          if (f.author) {
-            fHtml += '<div class="row">作者：' + f.author + '</div>'
-          }
-          fHtml += '<br />'
-          if (f.douyin) {
-            fHtml += '<span class="row">抖音：' + f.douyin + '</span>'
-            fHtml += '<span class="sep">|</span>'
-          }
-          if (f.xiaohongshu) {
-            fHtml += '<span class="row">小红书：' + f.xiaohongshu + '</span>'
-          }
-          var hasVersion = f.version || f.updated
-          if (hasVersion) {
-            fHtml += '<br />'
-            if (f.version) {
-              fHtml += '<span>' + f.version + '</span>'
+                // 匹配开头的 "A类人格"、"B类人格"、"A到B类人格" 等
+                const match = cleaned.match(/^(.+?)(?:为)?[：:]/);
+                if (match) {
+                    return match[1].trim();
+                }
+                // 若没匹配到，则取第一行
+                const firstLine = cleaned.split('\n')[0];
+                return firstLine ? firstLine.trim() : '未知类型';
             }
-            if (f.updated) {
-              fHtml += '<span class="sep">·</span>'
-              fHtml += '<span>' + f.updated + '</span>'
-            }
-          }
-          footerEl.innerHTML = fHtml
-        }
-      }
 
-      /* ---------- 启动 ---------- */
-      render()
-    })()
-  </script>
+            // 清理结果描述：移除第一行标题和多余说明
+            function cleanDescription(resultKey) {
+                const raw = results[resultKey];
+                if (!raw) return '';
+
+                let text = raw.replace(/^显示结果为一下人格\s*/i, '').trim();
+
+                // 移除第一行标题（例如"A类人格为：..."）
+                const lines = text.split('\n');
+                if (lines.length > 0 && /^.+?(?:为)?[：:]/.test(lines[0])) {
+                    lines.shift(); // 去掉标题行
+                }
+                return lines.join('\n').trim();
+            }
+
+            // 渲染问题节点
+            function renderQuestion(nodeId) {
+                const node = nodes[nodeId];
+                if (!node) {
+                    // 如果节点不存在，直接当结果处理（以防万一）
+                    showResult('result_unknown');
+                    return;
+                }
+
+                // 切换卡片可见性
+                startCard.classList.add('hidden');
+                questionCard.classList.remove('hidden');
+                resultCard.classList.add('hidden');
+
+                questionText.textContent = node.text;
+                optionsContainer.innerHTML = '';
+
+                // 根据历史记录显示/隐藏返回按钮
+                if (historyStack.length > 0) {
+                    backBtn.classList.remove('hidden');
+                } else {
+                    backBtn.classList.add('hidden');
+                }
+
+                node.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = opt.label;
+                    btn.addEventListener('click', () => {
+                        handleNext(opt.next);
+                    });
+                    optionsContainer.appendChild(btn);
+                });
+            }
+
+            // 处理选项点击后的跳转
+            function handleNext(nextId) {
+                if (nextId === undefined || nextId === null) {
+                    // 没有next，直接显示默认结果
+                    showResult('result_unknown');
+                    return;
+                }
+
+                // 把当前节点压入历史栈（以便返回）
+                historyStack.push(currentNode);
+
+                // 如果是字符串且以 result_ 开头，或者不是数字（字符串结果key）
+                if (typeof nextId === 'string' && nextId.startsWith('result_')) {
+                    showResult(nextId);
+                } else if (typeof nextId === 'number' || /^\d+$/.test(String(nextId))) {
+                    // 数字节点
+                    const numId = Number(nextId);
+                    if (nodes[numId]) {
+                        currentNode = numId;
+                        renderQuestion(numId);
+                    } else {
+                        // 节点不存在，转到结果
+                        showResult('result_unknown');
+                    }
+                } else {
+                    // 其他字符串也尝试作为结果
+                    showResult(nextId);
+                }
+            }
+
+            // 展示结果页
+            function showResult(resultKey) {
+                startCard.classList.add('hidden');
+                questionCard.classList.add('hidden');
+                resultCard.classList.remove('hidden');
+
+                const title = extractTitle(resultKey);
+                const desc = cleanDescription(resultKey);
+
+                resultType.textContent = `你的类型是：${title}`;
+                resultDesc.textContent = desc || results[resultKey] || '';
+            }
+
+            // 开始测试
+            function startTest() {
+                currentNode = 1;
+                renderQuestion(1);
+            }
+
+            // 重新开始（回到首页）
+            function restart() {
+                currentNode = 1;
+                historyStack = [];
+                startCard.classList.remove('hidden');
+                questionCard.classList.add('hidden');
+                resultCard.classList.add('hidden');
+            }
+
+            // 返回上一题
+            function goBack() {
+                if (historyStack.length === 0) return;
+                const prevNode = historyStack.pop();
+                currentNode = prevNode;
+                renderQuestion(prevNode);
+            }
+
+            startBtn.addEventListener('click', startTest);
+            restartBtn.addEventListener('click', restart);
+            backBtn.addEventListener('click', goBack);
+
+            // 初始化：显示首页
+            // 所有卡片默认状态已在HTML中设置好
+        })();
+    </script>
 </body>
 </html>
