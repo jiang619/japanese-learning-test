@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语学习人格分支测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f1e8d9 0%, #e6d6b8 100%);
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #3e3a35;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* 卡片 */
+        .card {
+            background: rgba(255, 250, 240, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(210, 180, 140, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            letter-spacing: 0.02em;
+            color: #4a3f35;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: #faf5ed;
+            border: 1px solid #d9c8ae;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 400;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: #4b3f33;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(4px);
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        .option-btn:hover {
+            background: #e7d7bf;
+            border-color: #b2946b;
+            box-shadow: 0 8px 18px rgba(140, 110, 70, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .option-btn:active {
+            background: #dac5a7;
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        /* 结果页样式 */
+        .result-card {
+            text-align: center;
+        }
+
+        .result-type {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #5e4632;
+            letter-spacing: 0.04em;
+        }
+
+        .result-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #4a3f35;
+            white-space: pre-line;
+            text-align: left;
+            background: rgba(235, 220, 195, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid #cdb89e;
+            color: #7a6a58;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-top: 24px;
+        }
+
+        .back-btn:hover {
+            background: #cdb89e;
+            color: #fdfaf5;
+            border-color: #cdb89e;
+            box-shadow: 0 4px 12px rgba(140, 110, 70, 0.15);
+        }
+
+        .restart-btn {
+            background: transparent;
+            border: 1px solid #b2946b;
+            color: #5e4632;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        .restart-btn:hover {
+            background: #b2946b;
+            color: #fdfaf5;
+            border-color: #b2946b;
+            box-shadow: 0 8px 18px rgba(140, 110, 70, 0.2);
+        }
+
+        /* 首页标题 */
+        .start-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-align: center;
+            color: #5e4632;
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
+
+        .start-sub {
+            text-align: center;
+            color: #8a7a67;
+            font-size: 1rem;
+            margin-bottom: 36px;
+            letter-spacing: 0.08em;
+        }
+
+        .start-btn {
+            display: block;
+            margin: 0 auto;
+            background: #b2946b;
+            border: none;
+            color: #fdfaf5;
+            padding: 16px 48px;
+            border-radius: 40px;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            box-shadow: 0 4px 14px rgba(140, 110, 70, 0.25);
+        }
+
+        .start-btn:hover {
+            background: #9f835d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(140, 110, 70, 0.35);
+        }
+
+        .start-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 隐藏类 */
+        .hidden {
+            display: none;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px 20px;
+            }
+            .question-text {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 首页 -->
+        <div id="startCard" class="card">
+            <div class="start-title">日语学习人格测试</div>
+            <div class="start-sub">一分钟测出你适不适合学日语</div>
+            <button id="startButton" class="start-btn">开始测试</button>
+        </div>
+
+        <!-- 问题卡片（初始隐藏） -->
+        <div id="questionCard" class="card hidden">
+            <div id="questionText" class="question-text"></div>
+            <div id="optionsContainer" class="options"></div>
+            <div style="text-align: center;">
+                <button id="backButton" class="back-btn hidden">← 返回上一题</button>
+            </div>
+        </div>
+
+        <!-- 结果卡片（初始隐藏） -->
+        <div id="resultCard" class="card result-card hidden">
+            <div id="resultType" class="result-type"></div>
+            <div id="resultDesc" class="result-desc"></div>
+            <button id="restartButton" class="restart-btn">↺ 重新测试</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- 数据定义（直接修改这里即可扩展）----------
+            const nodes = {
+                1: {
+                    text: "现在是什么水平？",
+                    options: [
+                        { label: "A 刚接触，零基础 ", next: 2 },
+                        { label: "B 自学过一些些 ", next: 2 },
+                        { label: "C 系统学习过", next: 3 }
+                    ]
+                },
+                2: {
+                    text: "你学日语的目的是什么？",
+                    options: [
+                        { label: "A 兴趣爱好 ", next: 4 },
+                        { label: "B 工作或留学", next: 4 },
+                        { label: "C 考试或考级", next: 4 }
+                    ]
+                },
+                3: {
+                    text: "是什么让你感到学习阻力",
+                    options: [
+                        { label: "A 懒 ", next: 2 },
+                        { label: "B 难", next: 5 },
+                        { label: "C 兴趣不足", next: 5 }
+                    ]
+                },
+                4: {
+                    text: "你期望自己能学到什么水平？",
+                    options: [
+                        { label: "A 母语者接近", next: 5 },
+                        { label: "B 考级N1 N2左右", next: 5 },
+                        { label: "C N3以下", next: 6 }
+                    ]
+                },
+                5: {
+                    text: "平时你如何学习日语的？",
+                    options: [
+                        { label: "A 自学", next: 7 },
+                        { label: "B 报班或报课", next: 8 },
+                        { label: "C 都有", next: 8 }
+                    ]
+                },
+                6: {
+                    text: "你期望学习的方式是什么？",
+                    options: [
+                        { label: "A 跟着教科书学", next: 10 },
+                        { label: "B 跟老师学", next: 9 },
+                        { label: "C 自学", next: 10 }
+                    ]
+                },
+                7: {
+                    text: "如何自学的",
+                    options: [
+                        { label: "A 看看动漫 刷刷剧 听听歌", next: 6 },
+                        { label: "B 跟着教科书学", next: 10 },
+                        { label: "C app上学", next: 9 }
+                    ]
+                },
+                8: {
+                    text: "已经跟班或者买课了吗？",
+                    options: [
+                        { label: "A 已经", next: 9 },
+                        { label: "B 没有", next: 9 }
+                    ]
+                },
+                9: {
+                    text: "你觉得学习中借助老师/外力的教学时长和自学时长占比大概为多少？",
+                    options: [
+                        { label: "A 大概7：3 ", next: 11 },
+                        { label: "B 大概1：1", next: 10 },
+                        { label: "C 大概3：7 ", next: 13 }
+                    ]
+                },
+                10: {
+                    text: "每天大概学习时长",
+                    options: [
+                        { label: "A 一小时以上", next: 12 },
+                        { label: "B 半小时左右", next: 11 },
+                        { label: "C 十分钟左右 ", next: "result_D" }
+                    ]
+                },
+                11: {
+                    text: "你具备以下特质吗？",
+                    options: [
+                        { label: "A 记忆力好，逻辑性也不错", next: "result_B" },
+                        { label: "B 记忆力一般，但勤奋", next: "result_C" },
+                        { label: "C 记忆较差，比较懒惰", next: "result_D" }
+                    ]
+                },
+                12: {
+                    text: "你具备以下特质吗？",
+                    options: [
+                        { label: "A 记忆力好，逻辑性也不错", next: "result_AB" },
+                        { label: "B 记忆力一般，但勤奋", next: "result_B" },
+                        { label: "C 记忆较差，比较懒惰", next: "result_C" }
+                    ]
+                },
+                13: {
+                    text: "你具备以下特质吗？",
+                    options: [
+                        { label: "A 记忆力好，逻辑性也不错 ", next: "result_A" },
+                        { label: "B 记忆力一般，但勤奋", next: "result_B" },
+                        { label: "C 记忆较差，比较懒惰", next: "result_C" }
+                    ]
+                }
+            };
+
+            const results = {
+                result_A: `
+        显示结果为以下人格
+
+        A类人格为：当前学习路径与学习能力匹配高，上限高。
+        每天抽出半小时时间大概一年可以到达N2左右水平
+        `,
+                result_B: `
+        显示结果为一下人格
+
+        B类人格为：通过正确学习路径可以达到高水平
+        `,
+                result_AB: `
+        显示结果为一下人格
+
+        A到B类人格：当前学习路径与学习能力较为匹配，但仍需要通过外力的正确路径，能达到高水平
+        `,
+                result_C: `
+        显示结果为一下人格
+
+        C类人格：需要外部结构（老师/方法/工具/前辈）介入，否则效率低下，难以达到高水平。（N1以上）
+        `,
+                result_D: `
+        显示结果为一下人格
+
+        D类人格：小懒虫吗都是？
+        当前学习方法与学习能力同日语学习不太匹配，需要重新考量。
+        `
+            };
+
+            // ---------- DOM 元素 ----------
+            const startCard = document.getElementById('startCard');
+            const startBtn = document.getElementById('startButton');
+            const questionCard = document.getElementById('questionCard');
+            const resultCard = document.getElementById('resultCard');
+            const questionText = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const resultType = document.getElementById('resultType');
+            const resultDesc = document.getElementById('resultDesc');
+            const restartBtn = document.getElementById('restartButton');
+            const backBtn = document.getElementById('backButton');
+
+            // 当前节点ID
+            let currentNode = 1;
+
+            // 历史记录栈（记录每次跳转的来源节点ID）
+            let historyStack = [];
+
+            // 辅助函数：从结果文本中提取人格标题
+            function extractTitle(resultKey) {
+                const raw = results[resultKey];
+                if (!raw) return '未知类型';
+
+                // 去掉可能存在的 "显示结果为一下人格" 这类说明
+                let cleaned = raw.replace(/^显示结果为一下人格\s*/i, '').trim();
+
+                // 匹配开头的 "A类人格"、"B类人格"、"A到B类人格" 等
+                const match = cleaned.match(/^(.+?)(?:为)?[：:]/);
+                if (match) {
+                    return match[1].trim();
+                }
+                // 若没匹配到，则取第一行
+                const firstLine = cleaned.split('\n')[0];
+                return firstLine ? firstLine.trim() : '未知类型';
+            }
+
+            // 清理结果描述：移除第一行标题和多余说明
+            function cleanDescription(resultKey) {
+                const raw = results[resultKey];
+                if (!raw) return '';
+
+                let text = raw.replace(/^显示结果为一下人格\s*/i, '').trim();
+
+                // 移除第一行标题（例如"A类人格为：..."）
+                const lines = text.split('\n');
+                if (lines.length > 0 && /^.+?(?:为)?[：:]/.test(lines[0])) {
+                    lines.shift(); // 去掉标题行
+                }
+                return lines.join('\n').trim();
+            }
+
+            // 渲染问题节点
+            function renderQuestion(nodeId) {
+                const node = nodes[nodeId];
+                if (!node) {
+                    // 如果节点不存在，直接当结果处理（以防万一）
+                    showResult('result_unknown');
+                    return;
+                }
+
+                // 切换卡片可见性
+                startCard.classList.add('hidden');
+                questionCard.classList.remove('hidden');
+                resultCard.classList.add('hidden');
+
+                questionText.textContent = node.text;
+                optionsContainer.innerHTML = '';
+
+                // 根据历史记录显示/隐藏返回按钮
+                if (historyStack.length > 0) {
+                    backBtn.classList.remove('hidden');
+                } else {
+                    backBtn.classList.add('hidden');
+                }
+
+                node.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = opt.label;
+                    btn.addEventListener('click', () => {
+                        handleNext(opt.next);
+                    });
+                    optionsContainer.appendChild(btn);
+                });
+            }
+
+            // 处理选项点击后的跳转
+            function handleNext(nextId) {
+                if (nextId === undefined || nextId === null) {
+                    // 没有next，直接显示默认结果
+                    showResult('result_unknown');
+                    return;
+                }
+
+                // 把当前节点压入历史栈（以便返回）
+                historyStack.push(currentNode);
+
+                // 如果是字符串且以 result_ 开头，或者不是数字（字符串结果key）
+                if (typeof nextId === 'string' && nextId.startsWith('result_')) {
+                    showResult(nextId);
+                } else if (typeof nextId === 'number' || /^\d+$/.test(String(nextId))) {
+                    // 数字节点
+                    const numId = Number(nextId);
+                    if (nodes[numId]) {
+                        currentNode = numId;
+                        renderQuestion(numId);
+                    } else {
+                        // 节点不存在，转到结果
+                        showResult('result_unknown');
+                    }
+                } else {
+                    // 其他字符串也尝试作为结果
+                    showResult(nextId);
+                }
+            }
+
+            // 展示结果页
+            function showResult(resultKey) {
+                startCard.classList.add('hidden');
+                questionCard.classList.add('hidden');
+                resultCard.classList.remove('hidden');
+
+                const title = extractTitle(resultKey);
+                const desc = cleanDescription(resultKey);
+
+                resultType.textContent = `你的类型是：${title}`;
+                resultDesc.textContent = desc || results[resultKey] || '';
+            }
+
+            // 开始测试
+            function startTest() {
+                currentNode = 1;
+                renderQuestion(1);
+            }
+
+            // 重新开始（回到首页）
+            function restart() {
+                currentNode = 1;
+                historyStack = [];
+                startCard.classList.remove('hidden');
+                questionCard.classList.add('hidden');
+                resultCard.classList.add('hidden');
+            }
+
+            // 返回上一题
+            function goBack() {
+                if (historyStack.length === 0) return;
+                const prevNode = historyStack.pop();
+                currentNode = prevNode;
+                renderQuestion(prevNode);
+            }
+
+            startBtn.addEventListener('click', startTest);
+            restartBtn.addEventListener('click', restart);
+            backBtn.addEventListener('click', goBack);
+
+            // 初始化：显示首页
+            // 所有卡片默认状态已在HTML中设置好
+        })();
+    </script>
+</body>
+</html>
