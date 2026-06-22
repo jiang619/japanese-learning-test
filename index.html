@@ -109,6 +109,27 @@
             margin-bottom: 28px;
         }
 
+        .back-btn {
+            background: transparent;
+            border: 1px solid #cdb89e;
+            color: #7a6a58;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-top: 24px;
+        }
+
+        .back-btn:hover {
+            background: #cdb89e;
+            color: #fdfaf5;
+            border-color: #cdb89e;
+            box-shadow: 0 4px 12px rgba(140, 110, 70, 0.15);
+        }
+
         .restart-btn {
             background: transparent;
             border: 1px solid #b2946b;
@@ -202,6 +223,9 @@
         <div id="questionCard" class="card hidden">
             <div id="questionText" class="question-text"></div>
             <div id="optionsContainer" class="options"></div>
+            <div style="text-align: center;">
+                <button id="backButton" class="back-btn hidden">← 返回上一题</button>
+            </div>
         </div>
 
         <!-- 结果卡片（初始隐藏） -->
@@ -361,9 +385,13 @@
             const resultType = document.getElementById('resultType');
             const resultDesc = document.getElementById('resultDesc');
             const restartBtn = document.getElementById('restartButton');
+            const backBtn = document.getElementById('backButton');
 
             // 当前节点ID
             let currentNode = 1;
+
+            // 历史记录栈（记录每次跳转的来源节点ID）
+            let historyStack = [];
 
             // 辅助函数：从结果文本中提取人格标题
             function extractTitle(resultKey) {
@@ -415,6 +443,13 @@
                 questionText.textContent = node.text;
                 optionsContainer.innerHTML = '';
 
+                // 根据历史记录显示/隐藏返回按钮
+                if (historyStack.length > 0) {
+                    backBtn.classList.remove('hidden');
+                } else {
+                    backBtn.classList.add('hidden');
+                }
+
                 node.options.forEach(opt => {
                     const btn = document.createElement('button');
                     btn.className = 'option-btn';
@@ -433,6 +468,9 @@
                     showResult('result_unknown');
                     return;
                 }
+
+                // 把当前节点压入历史栈（以便返回）
+                historyStack.push(currentNode);
 
                 // 如果是字符串且以 result_ 开头，或者不是数字（字符串结果key）
                 if (typeof nextId === 'string' && nextId.startsWith('result_')) {
@@ -475,13 +513,23 @@
             // 重新开始（回到首页）
             function restart() {
                 currentNode = 1;
+                historyStack = [];
                 startCard.classList.remove('hidden');
                 questionCard.classList.add('hidden');
                 resultCard.classList.add('hidden');
             }
 
+            // 返回上一题
+            function goBack() {
+                if (historyStack.length === 0) return;
+                const prevNode = historyStack.pop();
+                currentNode = prevNode;
+                renderQuestion(prevNode);
+            }
+
             startBtn.addEventListener('click', startTest);
             restartBtn.addEventListener('click', restart);
+            backBtn.addEventListener('click', goBack);
 
             // 初始化：显示首页
             // 所有卡片默认状态已在HTML中设置好
